@@ -44,12 +44,11 @@ def run_regression(X, y, axes, order):
     axes.scatter(X_tr, y_tr, label='TR')
     axes.scatter(X_cv, y_cv, label='CV')
     axes.autoscale(False)
-    axes.plot(*plotting_data(X, w, order), c='r', label=f'order {order}')
+    axes.plot(*plotting_data(X, w, order), c='r', label=f'deg {order}')
 
     tr_mse = round(compute_mse(X_tr, y_tr, w, order), 2)
     cv_mse = round(compute_mse(X_cv, y_cv, w, order), 2)
 
-    # axes.set_title(f' Training MSE = {tr_mse}\n CV MSE = {cv_mse}', y=-0.3, fontsize=8)
     axes.set_xlabel('size(sqft)')
     axes.set_ylabel('price x 1000')
     axes.legend()
@@ -87,7 +86,7 @@ mse_history[3, :] = run_regression(X, Y, ax21, 4)
 ax0 = fig.add_subplot(spec[0, :])
 ax0.plot(mse_history[:, 2], mse_history[:, 1], label='C.V.')
 ax0.plot(mse_history[:, 2], mse_history[:, 0], label='Tr')
-ax0.set_xlabel('order')
+ax0.set_xlabel('degree')
 ax0.set_ylabel('MSE')
 ax0.legend()
 
